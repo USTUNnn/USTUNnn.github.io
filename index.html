@@ -1,154 +1,42 @@
 
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Furkan Üstün Aladağ | Portfolio</title>
+canvas.height=window.innerHeight;
+canvas.width=window.innerWidth;
 
-<style>
+const letters="01";
+const fontSize=14;
+const columns=canvas.width/fontSize;
 
-body{
-margin:0;
-font-family:Arial;
-background:linear-gradient(135deg,#0f172a,#020617);
-color:white;
+const drops=[];
+
+for(let x=0;x<columns;x++)
+drops[x]=1;
+
+function draw(){
+
+ctx.fillStyle="rgba(0,0,0,0.05)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="#38bdf8";
+ctx.font=fontSize+"px monospace";
+
+for(let i=0;i<drops.length;i++){
+
+const text=letters.charAt(Math.floor(Math.random()*letters.length));
+
+ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
+drops[i]=0;
+
+drops[i]++;
+
 }
 
-header{
-text-align:center;
-padding:60px 20px;
-background:#020617;
-border-bottom:1px solid #334155;
 }
 
-header h1{
-font-size:40px;
-margin-bottom:10px;
-}
+setInterval(draw,35);
 
-header p{
-color:#94a3b8;
-}
-
-.container{
-width:90%;
-max-width:1000px;
-margin:auto;
-padding:40px 0;
-}
-
-.card{
-background:#1e293b;
-padding:30px;
-border-radius:10px;
-margin-bottom:30px;
-box-shadow:0 0 20px rgba(0,0,0,0.5);
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-box-shadow:0 0 25px #38bdf8;
-}
-
-h2{
-color:#38bdf8;
-margin-bottom:20px;
-}
-
-.skill{
-display:inline-block;
-background:#334155;
-padding:8px 12px;
-margin:5px;
-border-radius:5px;
-font-size:14px;
-}
-
-footer{
-text-align:center;
-padding:30px;
-color:#94a3b8;
-border-top:1px solid #334155;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<header>
-<h1>Furkan Üstün Aladağ</h1>
-<p>Electrical & Electronics Engineer</p>
-</header>
-
-<div class="container">
-
-<div class="card">
-<h2>About Me</h2>
-<p>
-Electrical & Electronics Engineering graduate with strong interest in electronics, embedded systems and reverse engineering.
-I enjoy learning new technologies and transforming theoretical knowledge into practical solutions.
-</p>
-</div>
-
-<div class="card">
-<h2>Experience</h2>
-
-<p><b>Electronics Engineer</b> – Embedded sensor development</p>
-<p><b>Hardware Intern</b> – PCB design and CNC control cards</p>
-<p><b>R&D Test Intern</b> – Automotive fuel system testing</p>
-<p><b>Hardware Development Intern</b> – SMD soldering & PCB design</p>
-<p><b>Teknofest UAV Team</b> – Battery Management System & ESC design</p>
-
-</div>
-
-<div class="card">
-<h2>Technical Skills</h2>
-
-<div class="skill">Embedded C</div>
-<div class="skill">Assembly</div>
-<div class="skill">ESP32</div>
-<div class="skill">PIC</div>
-<div class="skill">Arduino</div>
-<div class="skill">PLC</div>
-<div class="skill">TIA Portal</div>
-<div class="skill">Altium Designer</div>
-<div class="skill">KiCad</div>
-<div class="skill">Proteus</div>
-<div class="skill">Multisim</div>
-<div class="skill">MPLAB X</div>
-<div class="skill">Ghidra</div>
-<div class="skill">MATLAB</div>
-<div class="skill">HTML/CSS</div>
-<div class="skill">PCB Design</div>
-<div class="skill">Sensor Integration</div>
-<div class="skill">Reverse Engineering</div>
-
-</div>
-
-<div class="card">
-<h2>Projects</h2>
-
-<p>Battery Management System for UAV</p>
-<p>ESC Protection Circuit Design</p>
-<p>Embedded Sensor Systems</p>
-<p>Hardware Reverse Engineering</p>
-
-</div>
-
-<div class="card">
-<h2>Languages</h2>
-<p>English – B1</p>
-</div>
-
-</div>
-
-<footer>
-Portfolio Website
-</footer>
+</script>
 
 </body>
 </html>
