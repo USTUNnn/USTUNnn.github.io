@@ -1,191 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Furkan Üstün Aladağ – Portfolio</title>
-
-<!-- Font -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-<style>
-
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-    font-family:Inter;
-    background:#000;
-    color:white;
-    overflow-x:hidden;
-}
-
-/* 3D Background */
-canvas#bg{
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:-1;
-}
-
-/* HERO */
-.hero{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-}
-.title{
-    font-size:80px;
-    font-weight:600;
-}
-.subtitle{
-    margin-top:20px;
-    font-size:22px;
-    color:#ccc;
-}
-
-/* SECTIONS */
-.section{
-    padding:150px 12%;
-    min-height:60vh;
-}
-.section h2{
-    font-size:40px;
-    margin-bottom:30px;
-}
-
-/* GRID */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-}
-
-/* CARDS */
-.card{
-    padding:40px;
-    background:rgba(255,255,255,0.06);
-    border-radius:12px;
-    backdrop-filter:blur(10px);
-    transition:.4s;
-}
-.card:hover{
-    transform:translateY(-12px) scale(1.04);
-    background:rgba(255,255,255,0.15);
-}
-
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:60px;
-    color:#888;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furkan Üstün Aladağ | Elektrik-Elektronik Mühendisi</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        /* Modern, Koyu ve Minimalist Temel Tasarım (Jesko Jets Tarzı) */
+        * { box-sizing: border-box; }
+        body { 
+            margin: 0; 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            background: #070707; /* Derin siyah/gri */
+            color: #f5f5f5; 
+            overflow-x: hidden; 
+        }
+        
+        /* Hero Section (Karşılama Ekranı) */
+        .hero { 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            padding: 0 5vw;
+        }
+        h1 { 
+            font-size: 6vw; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            margin: 0; 
+            font-weight: 300; 
+        }
+        .subtitle { 
+            font-size: 1.5vw; 
+            color: #888; 
+            margin-top: 2vh; 
+            font-weight: 300; 
+            letter-spacing: 2px; 
+        }
+        
+        /* Genel Bölüm Yapısı */
+        .section { 
+            padding: 15vh 10vw; 
+            min-height: 80vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+        }
+        h2 { 
+            font-size: 3.5vw; 
+            font-weight: 300; 
+            margin-bottom: 8vh; 
+            border-bottom: 1px solid #222; 
+            padding-bottom: 2vh;
+            color: #fff;
+        }
+        
+        /* Proje Listesi */
+        .project-card { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px solid #1a1a1a; 
+            padding: 5vh 0; 
+            opacity: 0; /* JS ile görünür olacak */
+            transform: translateY(50px); 
+            transition: border-color 0.3s ease;
+        }
+        .project-card:hover {
+            border-bottom: 1px solid #fff;
+            cursor: pointer;
+        }
+        .project-title { 
+            font-size: 2vw; 
+            font-weight: 400; 
+            max-width: 60%;
+        }
+        .project-tech { 
+            font-size: 1.1vw; 
+            color: #777; 
+            text-align: right;
+            font-weight: 300;
+        }
+        
+        /* İletişim / Footer */
+        .contact { 
+            text-align: center; 
+            padding-bottom: 15vh; 
+            margin-top: 5vh;
+        }
+        .contact p {
+            font-size: 1.5vw;
+            color: #888;
+            margin-bottom: 6vh;
+            font-weight: 300;
+        }
+        .contact-btn { 
+            color: #070707; 
+            background: #fff;
+            text-decoration: none; 
+            font-size: 1.2vw; 
+            padding: 2vh 4vw; 
+            border-radius: 50px; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            transition: all 0.4s ease; 
+        }
+        .contact-btn:hover { 
+            background: #ccc; 
+            transform: scale(1.05);
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- Background 3D Canvas -->
-<canvas id="bg"></canvas>
+    <section class="hero">
+        <h1 class="hero-text">Furkan Üstün Aladağ</h1>
+        <div class="subtitle hero-text">Elektrik-Elektronik Mühendisi • Gömülü Yazılım & PCB Tasarım</div>
+    </section>
 
-<!-- HERO -->
-<header class="hero">
-    <h1 class="title">Furkan Üstün Aladağ</h1>
-    <p class="subtitle">Electrical & Electronics Engineer</p>
-</header>
+    <section class="section" id="about">
+        <h2 class="fade-up">Hakkımda</h2>
+        <p class="fade-up" style="font-size: 1.8vw; line-height: 1.6; color: #aaa; max-width: 80%; font-weight: 300;">
+            Donanım ve yazılımın kesiştiği noktada yenilikçi çözümler üretiyorum. Mikrodenetleyiciler, endüstriyel otomasyon sistemleri ve donanım geliştirme süreçlerinde derinleşerek uçtan uca sistemler tasarlıyorum.
+        </p>
+    </section>
 
-<!-- ABOUT -->
-<section class="section">
-    <h2>About</h2>
-    <p>
-        Engineer focused on embedded systems, hardware design & reverse engineering.
-        Passionate about creating precise, high-performance electronic systems.
-    </p>
-</section>
+    <section class="section" id="projects">
+        <h2 class="fade-up">Projeler & Deneyimler</h2>
+        
+        <div class="project-card">
+            <div class="project-title">Tersine Mühendislik & Firmware Geliştirme</div>
+            <div class="project-tech">Ghidra, MPLAB X, PIC Assembly, HDC1080</div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-title">Akıllı Garaj Lazer Tespit Sistemi</div>
+            <div class="project-tech">ESP32, C++, Google Home Entegrasyonu</div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-title">Endüstriyel Otomasyon & HMI Entegrasyonu</div>
+            <div class="project-tech">Siemens LOGO!, S7-1200, TIA Portal, Beijer HMI</div>
+        </div>
 
-<!-- SKILLS -->
-<section class="section">
-    <h2>Skills</h2>
+        <div class="project-card">
+            <div class="project-title">Özel Tasarım 18650 Güç Ünitesi & Kablosuz Şarj</div>
+            <div class="project-tech">Devre Tasarımı, Altium, 3D Baskı (CAD)</div>
+        </div>
+    </section>
 
-    <div class="grid">
-        <div class="card">Embedded Systems</div>
-        <div class="card">PCB Design</div>
-        <div class="card">Reverse Engineering</div>
-        <div class="card">Industrial Automation</div>
-    </div>
-</section>
+    <section class="section contact">
+        <h2 class="fade-up">İletişim</h2>
+        <p class="fade-up">Manisa bölgesindeki donanım tasarımı ve gömülü yazılım fırsatları için benimle iletişime geçebilirsiniz.</p>
+        <div class="fade-up" style="margin-top: 4vh;">
+            <a href="mailto:info@ornek.com" class="contact-btn">Bana Ulaşın</a>
+        </div>
+    </section>
 
-<!-- PROJECTS -->
-<section class="section">
-    <h2>Projects</h2>
+    <script>
+        // GSAP ScrollTrigger Eklentisini Aktifleştirme
+        gsap.registerPlugin(ScrollTrigger);
 
-    <div class="grid">
-        <div class="card">UAV Battery Management System</div>
-        <div class="card">ESC Protection Circuit</div>
-        <div class="card">Embedded Sensor Systems</div>
-        <div class="card">Hardware Reverse Engineering</div>
-    </div>
-</section>
+        // Sayfa Yüklendiğinde Hero Kısmı Animasyonu
+        gsap.from(".hero-text", { 
+            duration: 1.5, 
+            y: 80, 
+            opacity: 0, 
+            stagger: 0.3, 
+            ease: "power4.out", 
+            delay: 0.2 
+        });
 
-<!-- FOOTER -->
-<footer>Portfolio</footer>
+        // Aşağı Kaydırdıkça Projelerin Belirmesi (Fade-up)
+        gsap.utils.toArray('.project-card').forEach(card => {
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%", // Öğe ekranın %85'ine geldiğinde başla
+                    toggleActions: "play none none reverse"
+                },
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                ease: "power3.out"
+            });
+        });
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.0.5/bundled/lenis.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-
-<script>
-/* Smooth Scroll Engine */
-const lenis = new Lenis()
-function raf(time){lenis.raf(time);requestAnimationFrame(raf)}
-requestAnimationFrame(raf)
-
-/* Section Reveal */
-gsap.registerPlugin(ScrollTrigger)
-gsap.utils.toArray(".section").forEach(sec=>{
-    gsap.from(sec,{
-        opacity:0,
-        y:100,
-        duration:1.5,
-        scrollTrigger:{
-            trigger:sec,
-            start:"top 80%"
-        }
-    })
-})
-
-/* THREE.JS Background */
-const canvas = document.getElementById("bg");
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
-const renderer = new THREE.WebGLRenderer({canvas,alpha:true});
-renderer.setSize(innerWidth,innerHeight);
-camera.position.z=4;
-
-/* Object */
-const geo = new THREE.IcosahedronGeometry(1.2,1);
-const mat = new THREE.MeshBasicMaterial({color:0xffffff,wireframe:true});
-const mesh = new THREE.Mesh(geo,mat);
-scene.add(mesh);
-
-function animate(){
-    requestAnimationFrame(animate);
-    mesh.rotation.x += 0.003;
-    mesh.rotation.y += 0.002;
-    renderer.render(scene,camera);
-}
-animate();
-
-addEventListener("resize",()=>{
-    renderer.setSize(innerWidth,innerHeight);
-    camera.aspect=innerWidth/innerHeight;
-    camera.updateProjectionMatrix();
-});
-</script>
-
+        // Genel Fade-up Sınıfı Animasyonları
+        gsap.utils.toArray('.fade-up').forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "top 90%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+    </script>
 </body>
 </html>
